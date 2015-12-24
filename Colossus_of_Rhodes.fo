@@ -4,17 +4,21 @@
 
 <!-- overall stucture -->
 <fo:layout-master-set>
+	
+	<!-- For main part -->
 	<fo:simple-page-master
 		master-name="wonders"
 		page-width="8.5in"
 		page-height="11in">
 		
 		<fo:region-body margin="1in" column-count="2"/>
+		<!-- header -->
 		<fo:region-before extent="1in" />
+		<!-- footer -->
 		<fo:region-after extent="1in" />
-		
 	</fo:simple-page-master>
 	
+	<!-- For cover page -->
 	<fo:simple-page-master
 		master-name="wonders_cover"
 		page-width="8.5in"
@@ -23,15 +27,17 @@
 	</fo:simple-page-master>
 </fo:layout-master-set>
 	
-
+<!-- cover page -->
 <fo:page-sequence
 	master-reference="wonders_cover">
 	<fo:flow
 		flow-name="xsl-region-body">
+		<!-- title -->
 		<fo:block font-size="24pt" space-after="0.2in" text-align="center" span="all">
 				Seven Wonders of the Ancient World (Cover Page)
 		</fo:block>
 		
+		<!-- image -->
 		<fo:block text-align="center" space-after="0.2in" padding=".2in">
 			<fo:external-graphic
 				src="url('seven.png')"
@@ -40,6 +46,7 @@
 				border-width="thick" />
 		</fo:block>
 		
+		<!-- other info -->
 		<fo:block font-size="14pt" text-align="left">
 			<fo:block>
 				Author: Ryan Ballenger
@@ -51,10 +58,11 @@
 	</fo:flow>
 </fo:page-sequence>
 
-<!-- page content -->
+<!-- normal page -->
 <fo:page-sequence
 	master-reference="wonders">
 	
+	<!-- page header -->
 	<fo:static-content 
 		flow-name="xsl-region-before">
 		<fo:block font-size="18pt"
@@ -66,6 +74,7 @@
 		</fo:block>
 	</fo:static-content>
 	
+	<!-- page footer -->
 	<fo:static-content 
 		flow-name="xsl-region-after">
 		<fo:block font-size="9pt"
@@ -75,12 +84,16 @@
 		</fo:block>
 	</fo:static-content>
 
+	<!-- body -->
 	<fo:flow
 		flow-name="xsl-region-body">
+		
+		<!-- title -->
 		<fo:block font-size="24pt" space-after="0.2in" text-align="center" span="all">
 			Colossus of Rhodes
 		</fo:block>
 		
+		<!-- image -->
 		<fo:block text-align="center" space-after="0.2in" padding-bottom=".2in" span="all" >
 			<fo:external-graphic
 				src="url('colossus.jpg')"
@@ -89,6 +102,7 @@
 				border-width="thick" />
 		</fo:block>
 		
+		<!-- columned paragraphs -->
 		<fo:block font-size="14pt" text-align="left" break-after="column">
 			<fo:block space-after="0.1in">
 				Construction began in 292 BC. Ancient accounts, which differ to some degree, describe the structure as being built with iron tie bars to which brass plates were fixed to form the skin. The interior of the structure, which stood on a 15-metre (49-foot) high white marble pedestal near the Mandraki harbour entrance, was then filled with stone blocks as construction progressed.[6] Other sources place the Colossus on a breakwater in the harbour. The statue itself was over 30 metres (98 feet) tall. Much of the iron and bronze was reforged from the various weapons Demetrius's army left behind, and the abandoned second siege tower may have been used for scaffolding around the lower levels during construction. Upper portions were built with the use of a large earthen ramp. During the building, workers would pile mounds of earth on the sides of the colossus. Upon completion all of the earth was removed and the colossus was left to stand alone. After twelve years, in 280 BC, the statue was completed. Preserved in Greek anthologies of poetry is what is believed to be the genuine dedication text for the Colossus.[7]	
@@ -99,6 +113,7 @@
 			</fo:block>	
 		</fo:block>
 		
+		<!-- content after page break -->
 		<fo:block font-size="14pt" text-align="left" break-before="page" span="all">
 			<fo:block space-after="0.1in">
 				Additional Information on Colossus, after a page break.
@@ -106,7 +121,5 @@
 		</fo:block>
 		
 	</fo:flow>
-	
 </fo:page-sequence>
-
 </fo:root>
