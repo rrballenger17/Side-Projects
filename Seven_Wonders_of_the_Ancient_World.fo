@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+
+<!-- overall structure -->
+<fo:layout-master-set>
+	<fo:simple-page-master
+		master-name="wonders_cover"
+		page-width="8.5in"
+		page-height="11in" margin="1in">
+		<fo:region-body/>
+	</fo:simple-page-master>
+</fo:layout-master-set>
+
+<!-- page content -->
+<fo:page-sequence
+	master-reference="wonders_cover">
+	<fo:flow
+		flow-name="xsl-region-body">
+		<fo:block font-size="28pt"
+			text-align="center">
+			Seven Wonders of the Ancient World </fo:block>
+		<fo:block font-size="14pt"
+			text-align="justify"
+			space-before=".25in">
+			The famous Greek historian 
+			Herodotus wrote of seven great 
+			architectural achievements.
+		</fo:block>
+	</fo:flow>
+</fo:page-sequence>
+
+</fo:root>
