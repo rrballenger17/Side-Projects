@@ -1,6 +1,7 @@
 
 # prompts user to take a break by opening a web browser to play jazz music
 # The duration variable would be set to 2 * 60 * 60 to prompt every 2 hours
+# Note: derived from Programming Foundations with Python on Udacity.com
 
 import time
 import webbrowser
