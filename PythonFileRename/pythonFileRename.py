@@ -1,4 +1,6 @@
 # rename files in /Users/Ryan/Desktop/Prank without numbers to show the hidden message
+# derived from Programming Foundations with Python on Udacity.com
+
 
 import os
 
