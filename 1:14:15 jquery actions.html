@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+
+<!--
+	1 - list item's hide and then fade in
+
+	2 - list item's disappear on click 
+
+	3 - add classes with a selector 
+
+	4 - add multiple actions by separating them with a '.'
+
+	5 - get all list text and append it to the <ol>
+
+	6 - append text of first <li> in <ul> to all the <li>'s
+
+
+	derived from: Javascript & Jquery by Duckett, CH. 7 
+-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title of the document</title>
+
+
+	<!-- hot, seasonal, favorite-->
+
+	<style>
+		.hot{
+			color: maroon;
+		}
+
+		.seasonal{
+			font-weight: bold;
+		}
+
+		.favorite{
+			font-variant: small-caps;
+
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<div id="page">
+		<h1 id="header">List</h1>
+		<h2>Buy groceries</h2>
+
+		<ul>
+			<li id="one" class="hot"><em>fresh</em> figs</li>
+			<li id="two" class="hot">pine nuts</li>
+			<li id="three" class="hot">honey</li>
+			<li id="four">balsamic vinegar</li>
+		</ul>
+
+		<ol>
+		</ol>
+	</div>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<script>
+
+		// 1
+		$('li:lt(3)').hide().fadeIn(1500);
+
+		// 2
+		$('li').on('click', function() {
+
+			$(this).remove();
+
+		});
+
+		// 3
+		$('li em').addClass('seasonal');
+		$('li.hot').addClass('favorite');
+
+		// 4 
+		$('li[id!="one"]').hide().delay(500).fadeIn(1400);
+
+
+		// 5
+		var $listText = $('ul').text();
+		$('ol').append('<li>' + $listText + '</li>');
+		
+		// 6 
+		var $listItemText = $('li[id="one"').text();
+		$('li').append(' <i style="font-size:8px">' + $listItemText + '</i>');
+
+
+		//$('ul').append($listHTML);
+
+	</script>
+</body>
+
+
+
+</html>
