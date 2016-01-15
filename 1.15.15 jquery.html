@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<!--
+	1 - replace the text inside <li>'s
+
+	2 - add update notice, add + symbol, add new list item
+
+	3 - remove class, add class, add id
+
+	4 - add css
+
+	5 - display id after each <li> text
+
+	6 - on mouseover add id, on mouseout remove it 
+
+	7 - on click, add date
+
+	8 - display event info at the bottom on mouseover
+
+	9 - add fade in and fade out to the top two <li>'s
+
+	10 - add animation on click to last three <li>'s
+	
+	derived from: Javascript & Jquery by Duckett, CH. 7 
+-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title of the document</title>
+
+
+	<!-- hot, seasonal, favorite-->
+
+	<style>
+		.hot{
+			color: maroon;
+		}
+
+		.seasonal{
+			font-weight: bold;
+		}
+
+		.favorite{
+			font-variant: small-caps;
+
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<div id="page">
+		<h1 id="header">List</h1>
+		<h2>Buy groceries</h2>
+
+		<ul>
+			<li id="one" class="hot"><em>fresh</em> figs</li>
+			<li id="two" class="hot">pine nuts</li>
+			<li id="three" class="hot">honey</li>
+			<li id="four">balsamic vinegar</li>
+		</ul>
+
+		<div id="notes"></div>
+
+		<ol>
+		</ol>
+	</div>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<script>
+
+		// 1
+		$(function() {
+			$('li:contains("pine")').text('almonds');
+			$('li.hot').html(function() {
+				return '<em>' + $(this).text() + '</em>';
+			});
+			$('li#one').replaceWith('<li id="one" class="hot">black berries</li>');
+		});
+
+
+
+		// 2
+		$(function() {
+			$('ul').before('<p class="notice">Just updated</p>');
+			$('li.hot').prepend('+ ');
+
+			var $newListItem= $('<li id="five"><em>gluten-free</em> soy sauce </li>');
+			$('li:last').after($newListItem);
+		});
+
+
+		// 3
+		$(function() {
+			$('li#three').removeClass('hot');
+			$('li.hot').addClass('favorite');
+			$('ul').attr('id', 'group');
+		});
+
+		// 4
+		$(function() {
+			var backgroundColor = $('li').css('background-color');
+			$('ul').prepend('<p>Background color was: ' + backgroundColor + '</p>');
+			$('li').css({
+				'background-color': '#c5a996',
+				'border': '1px solid #cc0cff',
+				'color': '#0000ff',
+				'font-family': 'Georgia',
+				'padding-left': '+=75'
+			});
+
+			backgroundColor = $('li').css('background-color');
+			$('ul').append('<p>Background color is: ' + backgroundColor + '</p>');
+		});
+
+		// 5
+		$(function() {
+			$('li').each(function() {
+				var ids = this.id;
+				$(this).append(' <span class="order">, id:' + ids + '</span>');
+			});
+		});
+
+
+		// 6
+		$(function() {
+			var ids = '';
+			var $listItems = $('li');
+
+			$listItems.on('mouseover click', function() {
+				ids = this.id;
+				$listItems.children('span').remove();
+				$(this).append(' <span class="priority">, ' + ids + '</span>');
+			});
+
+			$listItems.on('mouseout', function() {
+				$(this).children('span').remove();
+			});
+		});
+
+
+		// 7
+		$(function() {
+			$('li').on('click', function(e) {
+				$('li span').remove();
+				var date = new Date();
+				date.setTime(e.timeStamp);
+				var clicked = date.toDateString();
+				$(this).append('<span class="date">, ' + clicked + ' ' + e.type + '</span>');
+			});
+		});
+
+
+		// 8 
+		$(function() {
+			var listItem, itemStatus, eventType;
+
+			$('ul').on(
+				'click mouseover',
+				':not(#four)',
+				{status: 'important'},
+				function(e) {
+					listItem = 'Item: ' + e.target.textContent + '<br />';
+					itemStatus = 'Status: ' + e.data.status + '<br />';
+					eventType = 'Event: ' + e.type;
+					$('#notes').html(listItem + itemStatus + eventType);
+				}
+			);
+		});
+
+		// 9 
+		$(function() {
+			$('h2').hide().slideDown();
+			var $li = $('li:not(#three, #four, #five)');
+			$li.hide().each(function(index) {
+				$(this).delay(700*index).fadeIn(700);
+			});
+
+			$li.on('click', function() {
+				$(this).fadeOut(700);
+			});
+		});
+
+		// 10
+		$(function() {
+			$('li').on('click', function() {
+				$(this).animate({
+					opacity: 0.0,
+					paddingLeft: '+=80'
+				}, 500, function() {
+					$(this).remove();
+				});
+			});
+		});
+
+	</script>
+</body>
+
+
+
+</html>
