@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- derived from JavaScript & Jquery Ch. 8 -->
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+
+<style>
+	img { 
+		display: inline;
+		border: 1px solid black;
+	}
+
+	p{
+		padding-top: 0px;
+		margin-top: 0px;
+	}
+</style>
+
+</head>
+
+<body>
+<h2>Cities</h2>
+
+
+<div id="content"></div>
+
+<script>
+
+	function myFunction(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'https://api.myjson.com/bins/41q3l', true);
+	xhr.send(null);
+
+	xhr.onload = function() {
+		if (xhr.status == 200) {
+			//document.getElementById('content').innerHTML = xhr.responseText;
+		
+			responseObject = JSON.parse(xhr.responseText);
+
+			var newContent = '';
+			for(var i=0; i<responseObject.events.length; i++){
+				newContent += '<div class = "event">'
+				newContent += '<img style="height: 100px" src="' + responseObject.events[i].map + '" />';
+				
+				newContent += '<p><b>' + responseObject.events[i].location + '</b><br>';
+				newContent += responseObject.events[i].date + '</p>'
+
+				newContent += '</div>'
+			}
+
+			document.getElementById('content').innerHTML = newContent;
+			//document.getElementById('content').innerHTML = responseObject.events.length + ''
+		}
+	}
+	}
+</script>
+
+<button onclick="myFunction()"> Click</button> to activate AJAX request
+
+</body>
+
+</html>
+
+
+
+
+
+
