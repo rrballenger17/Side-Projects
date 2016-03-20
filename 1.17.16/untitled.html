@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- derived from JavaScript & Jquery Ch. 8 -->
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+
+<style>
+	a{
+		padding-left: 30px;
+	}
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+<nav>
+	<a href="one.html" id="1">Part 1</a>
+	<a href="two.html" id="2">Part 2</a>
+	<a href="three.html" id="3">Part 3</a>
+</nav>
+
+<section id="content">
+	<div id="container">
+
+	</div>
+</section>
+
+
+<script>
+	$('a').on('click', function(e) {
+		e.preventDefault();
+		var url = this.href;
+
+		window.location.href = url;
+
+
+		// doesn't work because of cross domain issues
+		//$('a.current').removeClass('current');
+		//$(this).addClass('current');
+
+		//$('#container').remove();
+		//$('#content').load(url + ' #container').hide().fadeIn('slow');
+
+	});
+</script>
+
+</body>
+
+</html>
+
